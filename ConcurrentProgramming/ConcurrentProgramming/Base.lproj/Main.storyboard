@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6j-W9-K7e">
+                                <rect key="frame" x="40" y="58" width="90" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="VuU-4I-yNR"/>
+                                    <constraint firstAttribute="width" constant="90" id="aS9-yw-VAo"/>
+                                </constraints>
+                                <state key="normal" title="download"/>
+                                <connections>
+                                    <action selector="beginLoad:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d4L-P9-EYU"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yL8-ud-oml">
+                                <rect key="frame" x="40" y="36" width="240" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="xev-jE-Cvl"/>
+                                </constraints>
+                            </progressView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X71-NP-ey5">
+                                <rect key="frame" x="0.0" y="116" width="320" height="452"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="8vC-zU-x17"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wbx-tX-LGK">
+                                <rect key="frame" x="190" y="58" width="90" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="4iZ-rl-HAH"/>
+                                    <constraint firstAttribute="width" constant="90" id="d1r-50-gpN"/>
+                                </constraints>
+                                <state key="normal" title="cancel"/>
+                                <connections>
+                                    <action selector="cancelLoad:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OeN-Ud-2Yc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Wbx-tX-LGK" firstAttribute="height" secondItem="t6j-W9-K7e" secondAttribute="height" id="2K9-4I-zrf"/>
+                            <constraint firstItem="yL8-ud-oml" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="5fO-0I-M5l"/>
+                            <constraint firstAttribute="trailing" secondItem="Wbx-tX-LGK" secondAttribute="trailing" constant="40" id="AcD-yb-PRW"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="X71-NP-ey5" secondAttribute="bottom" id="KGo-db-178"/>
+                            <constraint firstItem="t6j-W9-K7e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="Mz3-aN-yhm"/>
+                            <constraint firstItem="X71-NP-ey5" firstAttribute="top" secondItem="Wbx-tX-LGK" secondAttribute="bottom" constant="28" id="O1W-X2-OrS"/>
+                            <constraint firstItem="yL8-ud-oml" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="O93-j7-RVZ"/>
+                            <constraint firstItem="X71-NP-ey5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="R9U-Y3-GhH"/>
+                            <constraint firstItem="Wbx-tX-LGK" firstAttribute="width" secondItem="t6j-W9-K7e" secondAttribute="width" id="RTc-Rf-pea"/>
+                            <constraint firstItem="t6j-W9-K7e" firstAttribute="top" secondItem="yL8-ud-oml" secondAttribute="bottom" constant="20" id="WJR-Um-CLJ"/>
+                            <constraint firstItem="Wbx-tX-LGK" firstAttribute="top" secondItem="yL8-ud-oml" secondAttribute="bottom" constant="20" id="s55-Kf-beP"/>
+                            <constraint firstAttribute="trailing" secondItem="X71-NP-ey5" secondAttribute="trailing" id="sFZ-ZN-8Dx"/>
+                            <constraint firstAttribute="trailing" secondItem="yL8-ud-oml" secondAttribute="trailing" constant="40" id="yrZ-Aw-mso"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="progressView" destination="8bC-Xf-vdC" id="c0W-X2-Ouk"/>
+                        <outlet property="tableView" destination="X71-NP-ey5" id="JB7-wW-Oct"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="237" y="243"/>
+        </scene>
+    </scenes>
+</document>
