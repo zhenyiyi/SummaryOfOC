@@ -55,6 +55,7 @@
         NSError *error = nil;
         if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&error]) {
             NSLog(@"%@",error);
+            abort();
         }
     }
     return _persistentStoreCoordinator;
@@ -76,12 +77,13 @@
     if (managedObjectContext != nil) {
         if ([managedObjectContext hasChanges] && [managedObjectContext save:&error]) {
             NSLog(@"%@",error);
+             abort();
         }
     }
 }
 
 - (NSManagedObjectContext*)newPrivateContext{
-    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     context.persistentStoreCoordinator = self.persistentStoreCoordinator;
     return context;
 }

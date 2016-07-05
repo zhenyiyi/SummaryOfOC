@@ -7,10 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "Store.h"
 
 
+typedef void (^ProgressBlock)(CGFloat progress);
+
 @interface ImprotOperation : NSOperation
+
+@property (nonatomic, copy) ProgressBlock progress;
 
 -(id)initWithStore:(Store *)store fileName:(NSString *)fileName;
 

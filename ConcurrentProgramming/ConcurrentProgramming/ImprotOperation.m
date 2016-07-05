@@ -7,6 +7,11 @@
 //
 
 #import "ImprotOperation.h"
+#import "NSString+ParseCSV.h"
+
+
+
+static const NSInteger kSavedCount = 250;
 
 @interface ImprotOperation()
 @property (nonatomic, copy) NSString *fileName;
@@ -35,8 +40,45 @@
 
 - (void)improt{
     NSString *file = [NSString stringWithContentsOfFile:self.fileName encoding:NSUTF8StringEncoding error:nil];
-    NSLog(@"%@",file);
+//    NSLog(@"%@",file);
     
     NSArray * array = [file componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    
+    NSInteger totalCount = array.count;
+    
+    NSInteger OnePercentCount = totalCount / 100 ;
+    
+    __block NSInteger index = -1;
+    
+//    __weak typeof(self) _self = self;
+    
+    [file enumerateLinesUsingBlock:^(NSString * _Nonnull line, BOOL * _Nonnull stop) {
+        
+        
+//        NSLog(@"line = = %@",line);
+//        sleep(1);
+        index ++;
+        
+        if (index == 0) return ;
+        
+        NSArray *compents = [line csvComponents];
+        
+        if (compents.count < 5) {
+            return;
+        }
+        
+        if (index % OnePercentCount == 0) {
+            if (self.progress)  self.progress((CGFloat)index/totalCount);
+        }
+        
+        if (index % kSavedCount == 0) {
+            [self.managedObjectContext save:NULL];
+        }
+        
+    }];
+     if (self.progress) self.progress(1);
+     [self.managedObjectContext save:NULL];
 }
+
+
 @end

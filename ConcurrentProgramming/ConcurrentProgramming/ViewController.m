@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 #import "ImprotOperation.h"
+#import "FetchedResultsTableDataSource.h"
+#import "Stop.h"
+
 
 
 
@@ -32,11 +35,13 @@
  
  */
 @interface ViewController ()
-@property (strong, nonatomic) IBOutlet UIView *progressView;
+
+@property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSOperationQueue *operationQueue;
 @property (nonatomic, strong)Store *myStore;
+@property (nonatomic, strong)FetchedResultsTableDataSource *dataSource;
 
 
 @end
@@ -49,6 +54,28 @@
     self.operationQueue = [[NSOperationQueue alloc] init];
 
     self.myStore = [[Store alloc] init];
+    
+//    __weak typeof(self) _self = self;
+    
+//    [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillTerminateNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+//        [_self.myStore  saveContext];
+//    }];
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Stop"];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
+    NSFetchedResultsController *fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.myStore.mainManagedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    
+    
+    self.dataSource = [[FetchedResultsTableDataSource alloc] initWithTableView:self.tableView fetchResultsController:fetchResultsController];
+    
+    self.tableView.dataSource = self.dataSource;
+    
+    self.dataSource.configure = ^(UITableViewCell *cell, Stop *stop){
+        cell.textLabel.text = stop.name;
+    };
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    
 //
 //    NSManagedObject *person = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:store.mainManagedObjectContext];
 //    [person setValue:@"fenglin" forKey:@"name"];
@@ -83,6 +110,12 @@
 - (IBAction)beginLoad:(id)sender{
     NSString *fileName = [[NSBundle mainBundle] pathForResource:@"stops" ofType:@"txt"];
     ImprotOperation *operation = [[ImprotOperation alloc] initWithStore:self.myStore fileName:fileName];
+    operation.progress = ^(CGFloat progress){
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            self.progressView.progress = progress;
+            NSLog(@"%f",progress);
+        }];
+    };
     [self.operationQueue addOperation:operation];
 }
 

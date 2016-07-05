@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		51159A571D2BDFFC0017D625 /* NSString+ParseCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 51159A551D2BDFFC0017D625 /* NSString+ParseCSV.m */; };
+		51159A5A1D2BE9A30017D625 /* FetchedResultsTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 51159A591D2BE9A30017D625 /* FetchedResultsTableDataSource.m */; };
 		516395521D2B8454004BA036 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 516395511D2B8454004BA036 /* main.m */; };
 		516395551D2B8454004BA036 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 516395541D2B8454004BA036 /* AppDelegate.m */; };
 		516395581D2B8454004BA036 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 516395571D2B8454004BA036 /* ViewController.m */; };
@@ -22,6 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		51159A551D2BDFFC0017D625 /* NSString+ParseCSV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ParseCSV.m"; sourceTree = "<group>"; };
+		51159A561D2BDFFC0017D625 /* NSString+ParseCSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ParseCSV.h"; sourceTree = "<group>"; };
+		51159A581D2BE9A30017D625 /* FetchedResultsTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchedResultsTableDataSource.h; sourceTree = "<group>"; };
+		51159A591D2BE9A30017D625 /* FetchedResultsTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchedResultsTableDataSource.m; sourceTree = "<group>"; };
 		5163954D1D2B8454004BA036 /* ConcurrentProgramming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConcurrentProgramming.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		516395511D2B8454004BA036 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		516395531D2B8454004BA036 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -80,12 +86,16 @@
 				516395571D2B8454004BA036 /* ViewController.m */,
 				516395901D2BB1E7004BA036 /* ImprotOperation.h */,
 				516395911D2BB1E7004BA036 /* ImprotOperation.m */,
+				51159A581D2BE9A30017D625 /* FetchedResultsTableDataSource.h */,
+				51159A591D2BE9A30017D625 /* FetchedResultsTableDataSource.m */,
 				5163958A1D2BB1C7004BA036 /* Stop+CoreDataProperties.h */,
 				5163958B1D2BB1C7004BA036 /* Stop+CoreDataProperties.m */,
 				5163958C1D2BB1C7004BA036 /* Stop.h */,
 				5163958D1D2BB1C7004BA036 /* Stop.m */,
 				5163956A1D2B9990004BA036 /* Store.h */,
 				5163956B1D2B9990004BA036 /* Store.m */,
+				51159A561D2BDFFC0017D625 /* NSString+ParseCSV.h */,
+				51159A551D2BDFFC0017D625 /* NSString+ParseCSV.m */,
 				516395851D2BB109004BA036 /* DataModel.xcdatamodeld */,
 				516395591D2B8454004BA036 /* Main.storyboard */,
 				5163955C1D2B8454004BA036 /* Assets.xcassets */,
@@ -180,6 +190,8 @@
 				516395581D2B8454004BA036 /* ViewController.m in Sources */,
 				5163958E1D2BB1C7004BA036 /* Stop+CoreDataProperties.m in Sources */,
 				516395871D2BB109004BA036 /* DataModel.xcdatamodeld in Sources */,
+				51159A5A1D2BE9A30017D625 /* FetchedResultsTableDataSource.m in Sources */,
+				51159A571D2BDFFC0017D625 /* NSString+ParseCSV.m in Sources */,
 				516395551D2B8454004BA036 /* AppDelegate.m in Sources */,
 				5163956C1D2B9990004BA036 /* Store.m in Sources */,
 				516395521D2B8454004BA036 /* main.m in Sources */,
@@ -334,6 +346,7 @@
 				516395661D2B8454004BA036 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

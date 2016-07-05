@@ -20,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSNumber *longitude;
 @property (nullable, nonatomic, retain) NSString *name;
 
+
++ (void)importCompents:(NSArray *)compents managedObjectContext:(NSManagedObjectContext *)context;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
