@@ -111,10 +111,8 @@
     NSString *fileName = [[NSBundle mainBundle] pathForResource:@"stops" ofType:@"txt"];
     ImprotOperation *operation = [[ImprotOperation alloc] initWithStore:self.myStore fileName:fileName];
     operation.progress = ^(CGFloat progress){
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            self.progressView.progress = progress;
-            NSLog(@"%f",progress);
-        }];
+        self.progressView.progress = progress;
+        NSLog(@"%f",progress);
     };
     [self.operationQueue addOperation:operation];
 }

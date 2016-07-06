@@ -40,6 +40,10 @@ static const NSInteger kSavedCount = 250;
 }
 
 - (void)import{
+    
+    /**
+     *  CPU占用率达95%， 内存达50M。
+     */
     NSString *file = [NSString stringWithContentsOfFile:self.fileName encoding:NSUTF8StringEncoding error:NULL];
 //    NSLog(@"%@",file);
     
@@ -74,7 +78,11 @@ static const NSInteger kSavedCount = 250;
         }
         
         if (index % OnePercentCount == 0) {
-            if (self.progress)  self.progress((CGFloat)index/totalCount);
+            if (self.progress){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.progress((CGFloat)index/totalCount);
+                });
+            }
         }
         
         [Stop importCompents:compents managedObjectContext:self.managedObjectContext];
@@ -84,8 +92,12 @@ static const NSInteger kSavedCount = 250;
         }
         
     }];
-     if (self.progress) self.progress(1);
-     [self.managedObjectContext save:NULL];
+    if (self.progress){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.progress(1);
+        });
+    }
+    [self.managedObjectContext save:NULL];
 }
 
 
