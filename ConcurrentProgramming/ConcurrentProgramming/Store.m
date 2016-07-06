@@ -23,6 +23,8 @@
 
 @implementation Store
 
+#pragma mark -- life style
+
 - (instancetype)init
 {
     self = [super init];
@@ -31,7 +33,7 @@
             NSManagedObjectContext *moc = self.mainManagedObjectContext;
             if (moc != note.object) {
                 [moc performBlock:^{
-                    [self.mainManagedObjectContext mergeChangesFromContextDidSaveNotification:note];
+                    [moc mergeChangesFromContextDidSaveNotification:note];
                 }];
             }
         }];
@@ -51,7 +53,7 @@
 -(NSPersistentStoreCoordinator *)persistentStoreCoordinator{
     if (_persistentStoreCoordinator == nil) {
         _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
-        NSURL *url = [NSURL fileURLWithPath:[[self applicationDocumentPath] stringByAppendingPathComponent:@"data.sqlite"]];
+        NSURL *url = [[self applicationDocumentPath] URLByAppendingPathComponent:@"DataModel.sqlite"];
         NSError *error = nil;
         if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&error]) {
             NSLog(@"%@",error);
@@ -75,9 +77,9 @@
     NSError *error = nil;
     NSManagedObjectContext *managedObjectContext = self.mainManagedObjectContext;
     if (managedObjectContext != nil) {
-        if ([managedObjectContext hasChanges] && [managedObjectContext save:&error]) {
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
             NSLog(@"%@",error);
-             abort();
+            abort();
         }
     }
 }
@@ -90,8 +92,8 @@
 
 
 #pragma mark - private method
-- (NSString *)applicationDocumentPath{
-    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+- (NSURL *)applicationDocumentPath{
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 @end

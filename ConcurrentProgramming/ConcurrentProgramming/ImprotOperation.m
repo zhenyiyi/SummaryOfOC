@@ -8,6 +8,7 @@
 
 #import "ImprotOperation.h"
 #import "NSString+ParseCSV.h"
+#import "Stop.h"
 
 
 
@@ -34,12 +35,12 @@ static const NSInteger kSavedCount = 250;
     self.managedObjectContext = [self.store newPrivateContext];
     self.managedObjectContext.undoManager = nil;
     [self.managedObjectContext performBlockAndWait:^{
-        [self improt];
+        [self import];
     }];
 }
 
-- (void)improt{
-    NSString *file = [NSString stringWithContentsOfFile:self.fileName encoding:NSUTF8StringEncoding error:nil];
+- (void)import{
+    NSString *file = [NSString stringWithContentsOfFile:self.fileName encoding:NSUTF8StringEncoding error:NULL];
 //    NSLog(@"%@",file);
     
     NSArray * array = [file componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
@@ -61,6 +62,11 @@ static const NSInteger kSavedCount = 250;
         
         if (index == 0) return ;
         
+        if (self.isCancelled) {
+            *stop = YES;
+            return;
+        }
+        
         NSArray *compents = [line csvComponents];
         
         if (compents.count < 5) {
@@ -70,6 +76,8 @@ static const NSInteger kSavedCount = 250;
         if (index % OnePercentCount == 0) {
             if (self.progress)  self.progress((CGFloat)index/totalCount);
         }
+        
+        [Stop importCompents:compents managedObjectContext:self.managedObjectContext];
         
         if (index % kSavedCount == 0) {
             [self.managedObjectContext save:NULL];

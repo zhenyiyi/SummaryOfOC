@@ -80,6 +80,8 @@
 		5163954F1D2B8454004BA036 /* ConcurrentProgramming */ = {
 			isa = PBXGroup;
 			children = (
+				5163956A1D2B9990004BA036 /* Store.h */,
+				5163956B1D2B9990004BA036 /* Store.m */,
 				516395531D2B8454004BA036 /* AppDelegate.h */,
 				516395541D2B8454004BA036 /* AppDelegate.m */,
 				516395561D2B8454004BA036 /* ViewController.h */,
@@ -92,8 +94,6 @@
 				5163958B1D2BB1C7004BA036 /* Stop+CoreDataProperties.m */,
 				5163958C1D2BB1C7004BA036 /* Stop.h */,
 				5163958D1D2BB1C7004BA036 /* Stop.m */,
-				5163956A1D2B9990004BA036 /* Store.h */,
-				5163956B1D2B9990004BA036 /* Store.m */,
 				51159A561D2BDFFC0017D625 /* NSString+ParseCSV.h */,
 				51159A551D2BDFFC0017D625 /* NSString+ParseCSV.m */,
 				516395851D2BB109004BA036 /* DataModel.xcdatamodeld */,
